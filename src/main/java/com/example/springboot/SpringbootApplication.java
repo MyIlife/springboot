@@ -3,7 +3,10 @@ package com.example.springboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
 
+//@Component("") //指定扫描包
+//@SpringBootApplication(scanBasePackages = "") //指定基础扫描包
 @SpringBootApplication
 public class SpringbootApplication {
 

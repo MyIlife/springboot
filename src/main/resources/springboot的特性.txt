@@ -19,3 +19,15 @@
 2.默认的包结构
     主程序【这里是SpringbootApplication】所在包以及其子包的所有组件可以自动扫描并注入容器
 3.各种配置一般都有默认值
+    映射到某个组件中
+4.自动配置核心依赖spring-boot-autoconfigure
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
+                    <dependency>
+                      <groupId>org.springframework.boot</groupId>
+                      <artifactId>spring-boot-autoconfigure</artifactId>
+                      <version>2.4.1</version>
+                      <scope>compile</scope>
+                    </dependency>
