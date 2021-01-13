@@ -1,25 +1,23 @@
-package com.example.springboot;
+package com.example.springboot.base.configurationproperties;
 
-import com.example.springboot.base.configuration.ConfigTest1;
+import com.example.springboot.SpringbootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.stereotype.Component;
 
-//@Component("") //指定扫描包
-//@SpringBootApplication(scanBasePackages = "") //指定基础扫描包
 @SpringBootApplication
-public class SpringbootApplication {
-
+public class ConfigPropertyApplication {
     public static void main(String[] args) {
-
         ConfigurableApplicationContext run = SpringApplication.run(SpringbootApplication.class, args);
         String[] beanDefinitionNames = run.getBeanDefinitionNames();
         for (int i = 0; i < beanDefinitionNames.length; i++) {
             String beanDefinitionName = beanDefinitionNames[i];
             System.out.println(beanDefinitionName);
         }
-        ConfigTest1 configTest1 =(ConfigTest1) run.getBean("configTest1");
+        //因为Config里面加了注解@EnableConfigurationProperties(ConfigTest4.class)，而注入的类名就是这个。。。
+        ConfigTest4 configTest4 = (ConfigTest4)run.getBean("config.test-com.example.springboot.base.configurationproperties.ConfigTest4");
+        System.out.println(configTest4.toString());
+        ConfigTest5 configTest5 = (ConfigTest5)run.getBean("configTest5");
+        System.out.println(configTest5.toString());
     }
-
 }

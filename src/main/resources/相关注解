@@ -1,0 +1,14 @@
+spring提供的注解：
+    1.@Configuration(proxyBeanMethods = true)
+        full：@Bean之间有依赖关系，则推荐使用
+        lite：无依赖的话用lite，加速容器启动
+    2.@ConditionaOnBean、@ConditionalOnMissBean
+    3.@ImportResource("classpath:bean.xml")
+        导入xml定义的所有组件
+springboot提供的注解：
+1.@ConfigurationProperties(prefix = "") // 可以用在类或者方法上，这里先说明一下类
+    可以从application.properties中读取配置，并设置到相应类的成员变量上【必须要有set方法】
+    相比于spring，简化了@PropertySource和@Value的配合使用
+    注意：
+        1.被注解的类已经使用了@Component，那么无需额外操作
+        2.如果没有使用，那么需要在配置类上加入注解@EnableConfigurationProperties(value = xxx.class)
