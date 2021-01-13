@@ -1,0 +1,21 @@
+1.提供的功能
+    Create stand-alone Spring applications
+    创建spring应用
+
+    Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)
+    内嵌web服务器，无需打成jar包放到服务器运行
+
+    Provide opinionated 'starter' dependencies to simplify your build configuration
+    提供自动starter依赖，简化配置
+
+    Automatically configure Spring and 3rd party libraries whenever possible
+    自动配置spring以及第三方功能
+
+    Provide production-ready features such as metrics, health checks, and externalized configuration
+    提供生产级别的监控，监控检查，以及外部化配置
+
+    Absolutely no code generation and no requirement for XML configuration
+    无代码生产，无需编写xml
+2.默认的包结构
+    主程序【这里是SpringbootApplication】所在包以及其子包的所有组件可以自动扫描并注入容器
+3.各种配置一般都有默认值
