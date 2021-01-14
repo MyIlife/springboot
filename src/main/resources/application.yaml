@@ -1,16 +1,15 @@
+spring:
+#  mvc:
+#    static-path-pattern: /recources/**
+  banner:
+    image:
+    location: classpath:nobug1.jpg
 server:
-  port: 8090
+  port: 8080
 config:
   test1: 1
   test2: "testtttt"
   test:
     age: 15
     name: "sdf"
-#容器启动时可打印组件情况
 #debug=true
-#替换启动容器时的那个spring图片
-spring:
-  banner:
-    image:
-    location: classpath:nobug1.jpg
-#通过这个网站生成字符集http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
