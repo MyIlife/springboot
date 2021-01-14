@@ -15,9 +15,9 @@ public class ConfigPropertyApplication {
             System.out.println(beanDefinitionName);
         }
         //因为Config里面加了注解@EnableConfigurationProperties(ConfigTest4.class)，而注入的类名就是这个。。。
-        ConfigTest4 configTest4 = (ConfigTest4)run.getBean("config.test-com.example.springboot.base.configurationproperties.ConfigTest4");
-        System.out.println(configTest4.toString());
-        ConfigTest5 configTest5 = (ConfigTest5)run.getBean("configTest5");
-        System.out.println(configTest5.toString());
+        CPTest1 CPTest1 = (CPTest1)run.getBean("config.test-com.example.springboot.base.configurationproperties.CPTest1");
+        System.out.println(CPTest1.toString());
+        CPTest2 CPTest2 = (CPTest2)run.getBean("cPTest2");
+        System.out.println(CPTest2.toString());
     }
 }

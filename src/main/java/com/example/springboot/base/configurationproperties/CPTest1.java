@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 //@Component
 @ConfigurationProperties(prefix = "config.test")
-public class ConfigTest4 {
+public class CPTest1 {
     private String name;
     private int age;
 }
