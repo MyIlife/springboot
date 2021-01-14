@@ -12,14 +12,6 @@ import org.springframework.stereotype.Component;
 public class SpringbootApplication {
 
     public static void main(String[] args) {
-
         ConfigurableApplicationContext run = SpringApplication.run(SpringbootApplication.class, args);
-        String[] beanDefinitionNames = run.getBeanDefinitionNames();
-        for (int i = 0; i < beanDefinitionNames.length; i++) {
-            String beanDefinitionName = beanDefinitionNames[i];
-            System.out.println(beanDefinitionName);
-        }
-        ConfigTest1 configTest1 =(ConfigTest1) run.getBean("configTest1");
     }
-
 }

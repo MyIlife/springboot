@@ -12,3 +12,64 @@ springboot提供的注解：
     注意：
         1.被注解的类已经使用了@Component，那么无需额外操作
         2.如果没有使用，那么需要在配置类上加入注解@EnableConfigurationProperties(value = xxx.class)
+2.@SpringbootApplication
+    2.1 @SpringBootConfiguration
+        被@Configuration修饰
+    2.2 @EnableAutoConfiguration
+        @AutoConfigurationPackage
+            @Import({Registrar.class})
+                Registrar implements ImportBeanDefinitionRegistrar, DeterminableImports
+                    registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry)
+                        register(registry, new PackageImports(metadata).getPackageNames().toArray(new String[0]));
+                        -》new PackageImports(metadata).getPackageNames().toArray(new String[0]) //获取当前元数据所在包名
+                            registry.registerBeanDefinition(BEAN, new BasePackagesBeanDefinition(packageNames)); //指定包s注册
+        @Import({AutoConfigurationImportSelector.class})
+            AutoConfigurationImportSelector implements DeferredImportSelector, BeanClassLoaderAware,ResourceLoaderAware, BeanFactoryAware, EnvironmentAware, Ordered
+                String[] selectImports(AnnotationMetadata annotationMetadata)
+                    AutoConfigurationEntry autoConfigurationEntry = getAutoConfigurationEntry(annotationMetadata);
+                        List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes);// 获取所有需要导入的组件130个
+                        loadSpringFactories(classLoaderToUse).getOrDefault(factoryTypeName, Collections.emptyList());
+                            Enumeration<URL> urls = classLoader.getResources(FACTORIES_RESOURCE_LOCATION); //FACTORIES_RESOURCE_LOCATION = "META-INF/spring.factories";
+                            //默认扫描当前系统【包含所有其他jar】中所有这个路径下的文件
+                            // 加载spring-boot-autoconfigure-2.4.1.jar下面META-INF/spring.factories的org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+                            //130个，但最后真正加载的是按照实际配置选择是否加载【比如使用了@Conditional】
+
+    2.3 @ComponentScan(
+            excludeFilters = {@Filter(
+            type = FilterType.CUSTOM,
+            classes = {TypeExcludeFilter.class}
+        ), @Filter(
+            type = FilterType.CUSTOM,
+            classes = {AutoConfigurationExcludeFilter.class}
+        )}
+        )
+3.springmvc-web 中条件注册的各种configuration
+    3.1 DispatcherServletAutoConfiguration
+        		@Bean(name = DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
+        		public DispatcherServlet dispatcherServlet(WebMvcProperties webMvcProperties) {
+        			DispatcherServlet dispatcherServlet = new DispatcherServlet();
+        			dispatcherServlet.setDispatchOptionsRequest(webMvcProperties.isDispatchOptionsRequest());
+        			dispatcherServlet.setDispatchTraceRequest(webMvcProperties.isDispatchTraceRequest());
+        			dispatcherServlet.setThrowExceptionIfNoHandlerFound(webMvcProperties.isThrowExceptionIfNoHandlerFound());
+        			dispatcherServlet.setPublishEvents(webMvcProperties.isPublishRequestHandledEvents());
+        			dispatcherServlet.setEnableLoggingRequestDetails(webMvcProperties.isLogRequestDetails());
+        			return dispatcherServlet;
+        		}
+
+        		@Bean
+        		@ConditionalOnBean(MultipartResolver.class)
+        		@ConditionalOnMissingBean(name = DispatcherServlet.MULTIPART_RESOLVER_BEAN_NAME)
+        		public MultipartResolver multipartResolver(MultipartResolver resolver) {
+        			// Detect if the user has created a MultipartResolver but named it incorrectly
+        			return resolver;
+        		}
+    3.2 HttpEncodingAutoConfiguration
+        	@Bean
+        	@ConditionalOnMissingBean
+        	public CharacterEncodingFilter characterEncodingFilter() {
+        		CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
+        		filter.setEncoding(this.properties.getCharset().name());
+        		filter.setForceRequestEncoding(this.properties.shouldForce(Encoding.Type.REQUEST));
+        		filter.setForceResponseEncoding(this.properties.shouldForce(Encoding.Type.RESPONSE));
+        		return filter;
+        	}

@@ -19,5 +19,7 @@ public class ConfigPropertyApplication {
         System.out.println(CPTest1.toString());
         CPTest2 CPTest2 = (CPTest2)run.getBean("cPTest2");
         System.out.println(CPTest2.toString());
+        Object bean = run.getBean("org.springframework.boot.autoconfigure.AutoConfigurationPackages");
+        run.close();
     }
 }

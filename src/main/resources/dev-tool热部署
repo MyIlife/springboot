@@ -1,0 +1,10 @@
+1.引入依赖
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+</dependencies>
+2.有更新之后ctrl+F9【重新构建】
+3.官方推荐JRebel

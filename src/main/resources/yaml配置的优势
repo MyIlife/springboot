@@ -1,0 +1,11 @@
+1.提供更为丰富的数据类型，springboot能自己解析。
+2.配置时自动显示提示【自己自定义的配置类能提示】
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-configuration-processor</artifactId>
+    </dependency>
+    并在打包中移除这个依赖
+    <exclude>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-configuration-processor</artifactId>
+    </exclude>
