@@ -8,3 +8,4 @@
                 <artifactId>spring-boot-starter</artifactId>
             </dependency>
 4.自己写的或第三方starter，一般需要自己指定版本号
+5.自定义starter
