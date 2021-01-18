@@ -35,7 +35,7 @@
     2.controller处理/index的请求
 5.Rest风格支持
     GettMapping、DeleteMapping。。。
-6.请求映射原理【源码解读看有道云笔记】
+6.请求映射原理
     1.请求来到DispatcherServlet【springboot-web底层还是springmvc】
     2.ctrl+H显示继承树
     3.DispatcherServlet // 实现FrameworkServlet的doService(request, response);！！！
