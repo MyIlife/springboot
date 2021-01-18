@@ -9,3 +9,11 @@
             </dependency>
 4.自己写的或第三方starter，一般需要自己指定版本号
 5.自定义starter
+    1.新建项目
+    2.编写配置类xxxProperties【@ConfigurationProperties(prefix = "mytest.user")】
+    3.编写服务类xxxService【@Autowired private xxxProperties xxxProperties】
+    4.编写config类xxxConfiguration【@Configuration，@EnableConfigurationProperties(xxxProperties.class)】
+    5.config中@Bean注入xxxService
+    6.resource中新建/META-INF/spring.properties，并添加内容
+    org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.example.myhellospringbootstarter.MyTestConfig【config类的全路径名】

@@ -13,3 +13,7 @@ config:
     age: 15
     name: "sdf"
 #debug=true
+mytest:
+  user:
+    name: "yoyoyo"
+    sex: "women"
